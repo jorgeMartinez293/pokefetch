@@ -22,6 +22,16 @@
 
 Every time you open your terminal, **pokefetch** picks a random Pokémon sprite, extracts its dominant color, and displays it alongside your system info via [fastfetch](https://github.com/fastfetch-cli/fastfetch).
 
+## 📸 Preview
+
+<p align="center">
+  <img src="screenshots/terminal.png" width="700" alt="pokefetch in the terminal" />
+</p>
+
+<p align="center">
+  <img src="screenshots/manager.png" width="700" alt="PokéFetch Manager app" />
+</p>
+
 ## ✨ Features
 
 - 🎲 **Random Pokémon** — a different animated sprite on every terminal launch
