@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift build artifacts
+.build/
+build/
+
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# Compiled app (kept locally, not in repo)
+pokefetch.app/
+
+# Claude Code local settings
+.claude/
