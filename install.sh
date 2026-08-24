@@ -152,13 +152,37 @@ fi
 ZSHRC="$HOME/.zshrc"
 MARKER="# sereno"
 
+# Upgrade a pre-prompt-color install (old block had no sereno_prompt function).
+if [[ -f "$ZSHRC" ]] && grep -q "^$MARKER$" "$ZSHRC" && ! grep -q "sereno_prompt" "$ZSHRC"; then
+    info "Upgrading sereno shell integration in ${BOLD}~/.zshrc${NC}"
+    sed -i '' '/^# sereno$/,+2d' "$ZSHRC"
+fi
+
+# Some very old installs added the alias + greet.sh call with no "# sereno"
+# marker at all — those survive the checks above untouched and cause the gif
+# to render twice once the marked block is appended below. Strip them.
+if [[ -f "$ZSHRC" ]] && grep -qF "alias c='clear && \$HOME/.config/sereno/greet.sh'" "$ZSHRC"; then
+    info "Removing unmarked legacy sereno lines from ${BOLD}~/.zshrc${NC}"
+    sed -i '' "/^alias c='clear && \$HOME\/.config\/sereno\/greet.sh' *\$/d; \\#^\$HOME/.config/sereno/greet.sh\$#d" "$ZSHRC"
+fi
+
 if ! grep -q "$MARKER" "$ZSHRC" 2>/dev/null; then
     info "Adding sereno to ${BOLD}~/.zshrc${NC}"
     cat >> "$ZSHRC" << 'EOF'
 
 # sereno
-alias c='clear && $HOME/.config/sereno/greet.sh'
-$HOME/.config/sereno/greet.sh
+sereno_prompt() {
+    local f="$HOME/.config/sereno/current_color"
+    local c="#FFFFFF"
+    [[ -f "$f" ]] && c=$(<"$f")
+    PROMPT="%F{$c}●%f %F{$c}%/%f %F{white}"
+}
+sereno_greet() {
+    $HOME/.config/sereno/greet.sh
+    sereno_prompt
+}
+alias c='clear && sereno_greet'
+sereno_greet
 EOF
     ok "Shell integration added"
 else

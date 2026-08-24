@@ -141,6 +141,9 @@ fi
 # --- 6. GET AVERAGE COLOR (PASTEL) ---
 COLOR=$(python3 "$BASE_DIR/get_color.py" "${TARGET_IMAGE%\[0\]}")
 
+# Persist for the shell prompt (sereno_prompt in .zshrc reads this on every new shell).
+echo -n "$COLOR" > "$BASE_DIR/current_color"
+
 # --- 7. RUN FASTFETCH ---
 fastfetch --config "$CONFIG_PATH" \
           --logo-type iterm \

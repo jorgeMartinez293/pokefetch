@@ -44,14 +44,23 @@ fi
 # ---------- remove shell integration ----------
 if [[ -f "$ZSHRC" ]]; then
     CLEANED=0
-    for marker in "# sereno" "# pokefetch"; do
-        if grep -q "^$marker$" "$ZSHRC"; then
-            info "Cleaning up ~/.zshrc ($marker)..."
-            # Remove the block (marker + next 2 lines)
-            sed -i '' "/^$marker\$/,+2d" "$ZSHRC"
-            CLEANED=1
+    if grep -q "^# sereno$" "$ZSHRC"; then
+        info "Cleaning up ~/.zshrc (# sereno)..."
+        # Remove the block: marker + up to 12 lines (function defs, alias, call),
+        # or 2 lines for a pre-prompt-color install that was never upgraded.
+        if grep -q "sereno_prompt" "$ZSHRC"; then
+            sed -i '' '/^# sereno$/,+12d' "$ZSHRC"
+        else
+            sed -i '' '/^# sereno$/,+2d' "$ZSHRC"
         fi
-    done
+        CLEANED=1
+    fi
+    if grep -q "^# pokefetch$" "$ZSHRC"; then
+        info "Cleaning up ~/.zshrc (# pokefetch)..."
+        # Remove the block (marker + next 2 lines)
+        sed -i '' '/^# pokefetch$/,+2d' "$ZSHRC"
+        CLEANED=1
+    fi
     if [[ "$CLEANED" == "1" ]]; then
         # Remove any trailing blank line left behind
         sed -i '' -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$ZSHRC"

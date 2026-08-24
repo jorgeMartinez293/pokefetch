@@ -4,7 +4,8 @@ import AppKit
 /// sereno's main window, dressed like vaho's settings (System Settings in dark mode):
 /// a translucent "liquid glass" sidebar — here the list of available sprites — driving an
 /// opaque dark detail column with the live terminal preview and controls. The sidebar picks
-/// up a subtle tint from the selected sprite's dominant color. Changes persist immediately.
+/// up a subtle tint from the selected sprite's dominant color. Nothing is written to disk
+/// until "Guardar" is pressed — picking a sprite only updates the live preview.
 struct ContentView: View {
     @StateObject private var spriteManager = SpriteManager()
 
@@ -17,7 +18,17 @@ struct ContentView: View {
     @State private var accentColor    = Color(red: 0.85, green: 0.55, blue: 0.55)
     @State private var showPackStore  = false
 
-    enum SaveStatus { case idle, saved, error }
+    /// What's currently on disk (config.json), so we can tell whether the live selection
+    /// still matches it — drives the "Cambios sin guardar" indicator and the Guardar button.
+    @State private var savedSelectedFilename: String?
+    @State private var savedDisplayMode: DisplayMode = .auto
+
+    enum SaveStatus { case idle, error }
+
+    private var isDirty: Bool {
+        let currentSprite = isRandomMode ? nil : selectedSprite?.filename
+        return currentSprite != savedSelectedFilename || config.displayMode != savedDisplayMode
+    }
 
     var body: some View {
         NavigationSplitView(columnVisibility: Binding(get: { .all }, set: { _ in })) {
@@ -59,13 +70,10 @@ struct ContentView: View {
         .onAppear(perform: restoreSelection)
         .onChange(of: selectedSprite) { poke in
             if let poke { computeColor(for: poke) }
-            persist()
         }
         .onChange(of: isRandomMode) { random in
             if random { accentColor = Color(red: 0.85, green: 0.55, blue: 0.55) }
-            persist()
         }
-        .onChange(of: config.displayMode) { _ in persist() }
     }
 
     // MARK: - Detail
@@ -106,6 +114,16 @@ struct ContentView: View {
             Divider().frame(height: 34)
 
             saveIndicator
+
+            Button {
+                persist()
+            } label: {
+                Label("Guardar", systemImage: "checkmark.icloud")
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(accentColor)
+            .disabled(!isDirty)
+            .help("Aplica el sprite y color actuales, incluidas las ventanas de vidrio ya abiertas")
         }
         .animation(.easeInOut(duration: 0.2), value: saveStatus)
         .padding(.horizontal, 16).padding(.vertical, 12)
@@ -128,21 +146,25 @@ struct ContentView: View {
     @ViewBuilder
     private var saveIndicator: some View {
         switch saveStatus {
-        case .idle:
-            Label("Guardado automático", systemImage: "checkmark.icloud")
-                .font(.caption).foregroundColor(Color.secondary.opacity(0.6))
-        case .saved:
-            Label("Guardado", systemImage: "checkmark.circle.fill")
-                .font(.caption).foregroundColor(.green)
         case .error:
             Label("Error al guardar", systemImage: "exclamationmark.triangle.fill")
                 .font(.caption).foregroundColor(.orange)
+        case .idle:
+            if isDirty {
+                Label("Cambios sin guardar", systemImage: "circle.fill")
+                    .font(.caption).foregroundColor(.orange)
+            } else {
+                Label("Guardado", systemImage: "checkmark.circle.fill")
+                    .font(.caption).foregroundColor(.green)
+            }
         }
     }
 
     // MARK: - State
 
     private func restoreSelection() {
+        savedSelectedFilename = config.selectedSprite
+        savedDisplayMode      = config.displayMode
         if config.selectedSprite == nil {
             isRandomMode = true
             accentColor  = Color(red: 0.85, green: 0.55, blue: 0.55)
@@ -162,15 +184,15 @@ struct ContentView: View {
         }
     }
 
-    /// Persists the current selection + display mode immediately (vaho-style, no Save button).
+    /// Save button: writes the selection to config.json. Already-open vidrio windows watch
+    /// that file and pick the change up on their own within about half a second — nothing
+    /// else to do here.
     private func persist() {
         config.selectedSprite = isRandomMode ? nil : selectedSprite?.filename
         do {
             try ConfigManager.save(config)
-            withAnimation { saveStatus = .saved }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation { if saveStatus == .saved { saveStatus = .idle } }
-            }
+            savedSelectedFilename = config.selectedSprite
+            savedDisplayMode      = config.displayMode
         } catch {
             withAnimation { saveStatus = .error }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

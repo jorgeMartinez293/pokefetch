@@ -3,12 +3,27 @@
     <channel>
         <title>sereno</title>
         <item>
+            <title>1.5</title>
+            <pubDate>Mon, 24 Aug 2026 02:04:11 +0200</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno-1.5.zip" length="2767634" type="application/octet-stream" sparkle:edSignature="oL+U6uwC4ztrU0yrDQxoAJINgzw0LTLCHNstncD7WCcBybhZ03rJbxzOm2Wpo1d9LycMhhDBtv1YxUOVIMqpCg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno7-6.delta" sparkle:deltaFrom="6" length="230130" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="sWc2u7PFVI6JE6eK5bCw7IZL1nIga6ilRCQryBReeBS6GX1XIXckj7e1rf59r/qmwOJpVCVmbCzefRkLkYsxBg=="/>
+                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno7-5.delta" sparkle:deltaFrom="5" length="308674" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="PsTSRkeX9tNArH7e+nyDg9x8cM2nGiqFqHncWQxpZYkexFrnlxxzCk85AGrDdJYDieAuF7JjUU0m+P4n03HrAw=="/>
+                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno7-4.delta" sparkle:deltaFrom="4" length="312790" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="MHNCgQ3zzcg1XvHgsdVKLi+Co36dp+myNoOmH1CX/F1BHQdM7/AeZr5tn/eEmP3ZDXPuKKRbIaDj0x0khtFcCg=="/>
+                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno7-3.delta" sparkle:deltaFrom="3" length="426442" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="NOmn5fcZV6xG3H43LqZarF/lPX0Ne0NB4gzm54gFsZIVL0oqofrFFA9ODCj8T1TJ1dr6wzJWqEwi6dy4PbzCBA=="/>
+                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno7-2.delta" sparkle:deltaFrom="2" length="427194" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="qZr+mDFsUmvgdiX+KvIHnn+Zx4jcsa0frM+WthERv4gVWV0S085qKX5GocWDvjigcbrfVtcRIYMyiBpvY9m/BA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.4</title>
             <pubDate>Wed, 22 Jul 2026 01:36:24 +0200</pubDate>
             <sparkle:version>6</sparkle:version>
             <sparkle:shortVersionString>1.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno-1.4.zip" length="2763440" type="application/octet-stream" sparkle:edSignature="RSjuSdRQvdSVcZSMc/eaxXGh8Q3mswa8TWwrAJuBqHirmFkM7FINZ94Qbre/c9oYXbGrjTtHY2yINW9bdRA8CQ=="/>
+            <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno-1.4.zip" length="2763440" type="application/octet-stream"/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno6-5.delta" sparkle:deltaFrom="5" length="269018" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="DxLZsW2sUux2hXtkZ28X9STEDLJLsOd+CTq3P2TLju1pJRK20hdN3jpfHzZ3y37Si+owXTkqzZ+3FAncqTN1CQ=="/>
                 <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno6-4.delta" sparkle:deltaFrom="4" length="274726" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="COje8ufyTonKWRZxU9yUTV5Yb3s8vJwGnNXG+aLqbwsYCHQ1Xsq2XV2WX0066MRNpdsBrtVBwGbnF3EJvm/0Cg=="/>
@@ -22,19 +37,7 @@
             <sparkle:version>5</sparkle:version>
             <sparkle:shortVersionString>1.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno-1.3.zip" length="2753796" type="application/octet-stream" sparkle:edSignature="vkH7ac9TncqKHg/Dz6XNnGQ+F8w5W3G8oA7XfmDXDz6uCMi6ldx/Rg0EdB1XowMQsXyuPnV1i6N4s3eFi8GICQ=="/>
-        </item>
-        <item>
-            <title>1.2</title>
-            <pubDate>Sat, 18 Jul 2026 15:09:08 +0200</pubDate>
-            <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>1.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno-1.2.zip" length="2734661" type="application/octet-stream" sparkle:edSignature="L+sUQEnGVw2EPkVI5Oz0RqN3kmaJ6eBZ2Cqo/0Aje9zMita1HAcwdsUD/0q6g68i8Hb/tyz4gJWXSW+t3tMdCQ=="/>
-            <sparkle:deltas>
-                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno4-3.delta" sparkle:deltaFrom="3" length="358278" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="DZK+MHPc02pRp24GTMSFKAkYB49BEzWg4fmojV6yATniHgG0QpbHPRtI/l0fVWwzfyEYC6e50rnfJkXOHTz1Cw=="/>
-                <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno4-2.delta" sparkle:deltaFrom="2" length="358522" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977808" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="2O1w+kqPyzIMb/GtnHplUMYqH+vFW16eOI1xLYDBG61enqpq4VMkz9jru1a5P+Aa0AciEb5G3m8vScJXgwWpBw=="/>
-            </sparkle:deltas>
+            <enclosure url="https://github.com/jorgeMartinez293/sereno-releases/releases/latest/download/sereno-1.3.zip" length="2753796" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
